@@ -1,0 +1,14 @@
+[
+  {
+    "numeroIdentificador": 1,
+    "escuderia": "RB",
+    "participa": true,
+    "tiempoTotal": {
+      "horas": 1,
+      "minutos": 4,
+      "segundos": 3.14
+    },
+    "puntosObtendidos": 25,
+    "penalizacion": 0.0
+  }
+]

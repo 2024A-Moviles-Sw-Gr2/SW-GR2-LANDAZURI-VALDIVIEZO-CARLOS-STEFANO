@@ -1,0 +1,26 @@
+[
+  {
+    "identificadorGP": 1,
+    "autos": [
+      {
+        "numeroIdentificador": 1,
+        "escuderia": "RB",
+        "participa": true,
+        "tiempoTotal": {
+          "horas": 1,
+          "minutos": 4,
+          "segundos": 3.14
+        },
+        "puntosObtendidos": 25,
+        "penalizacion": 0.0
+      }
+    ],
+    "nombreCircuito": "Imola",
+    "fechaGP": {
+      "anio": 2024,
+      "mes": 5,
+      "dia": 24
+    },
+    "longitudCarrera": 3.04
+  }
+]
