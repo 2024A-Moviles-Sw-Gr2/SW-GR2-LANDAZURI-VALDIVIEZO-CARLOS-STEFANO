@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1016616373910",
+    "project_id": "deber-cslv-sw-app-moviles",
+    "storage_bucket": "deber-cslv-sw-app-moviles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016616373910:android:7650a47eab9eb753defcb7",
+        "android_client_info": {
+          "package_name": "com.example.formula1cslv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABiQ82jQgksjZ3w_6SndhyLuShNkmgQSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
