@@ -11,9 +11,12 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.formula1cslv.entidades.Auto
+import com.example.formula1cslv.entidades.Tiempo
+import java.io.CharArrayReader
 
 class GrandPrix : AppCompatActivity() {
-    val arreglo = arrayListOf<String>()
+    val arreglo = arrayListOf<Auto>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grand_prix)
@@ -21,8 +24,8 @@ class GrandPrix : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.txtVNombreGP)
         textView.setText(MainActivity.tituloItem)
         //Arreglo provicional
-        arreglo.add("RedBull")
-        arreglo.add("Ferrari")
+        arreglo.add(Auto(1,"RedBull",true, Tiempo(1,2,3.15),25,1.5,"Max Verstappen"))
+        arreglo.add(Auto(3,"Ferrari",true, Tiempo(1,2,3.90),18,0.0,"Carlos Sainz"))
 
         //logica lista
         //Logica lista
