@@ -143,19 +143,16 @@ class SqliteHelper(
 
     fun updateGrandPrix(
         id: Int,
-        name: String,
-        age: Int,
-        literary_genre: String
+        fecha: String,
     ): Boolean {
+        print("${id} ${fecha}")
         val writeDB = writableDatabase
         val valuesToUpdate = ContentValues()
-        valuesToUpdate.put("name", name)
-        valuesToUpdate.put("age", age)
-        valuesToUpdate.put("literary_genre", literary_genre)
+        valuesToUpdate.put("fecha", fecha)
 
         val parametersUpdateQuery = arrayOf(id.toString())
         val updateResult = writeDB.update(
-            "AUTHOR", // Table name
+            "GrandPrix", // Table name
             valuesToUpdate,
             "id=?",
             parametersUpdateQuery
@@ -168,21 +165,19 @@ class SqliteHelper(
     //TODO
     fun updateCar(
         id: Int,
-        title: String,
-        description: String,
-        author_id: Int
+        tiempoTotal:String,
+        puntosObtenidos: Int,
     ): Boolean {
         val writeDB = writableDatabase
         val valuesToUpdate = ContentValues()
-        valuesToUpdate.put("title", title)
-        valuesToUpdate.put("description", description)
-        valuesToUpdate.put("author_id", author_id)
+        valuesToUpdate.put("tiempoTotal", tiempoTotal)
+        valuesToUpdate.put("puntosObtenidos", puntosObtenidos)
 
         val parametersUpdateQuery = arrayOf(id.toString())
         val updateResult = writeDB.update(
-            "BOOK", // Table name
+            "Auto", // Table name
             valuesToUpdate,
-            "id=?",
+            "numeroIdentificador=?",
             parametersUpdateQuery
         )
         writeDB.close()
@@ -195,7 +190,7 @@ class SqliteHelper(
         // SQL query example: where .... ID=? AND NAME=? [?=1, ?=2]
         val parametersDeleteQuery = arrayOf(id.toString())
         val deleteResult = writeDB.delete(
-            "AUTHOR",
+            "GrandPrix",
             "id=?",
             parametersDeleteQuery
         )
@@ -209,8 +204,8 @@ class SqliteHelper(
         // SQL query example: where .... ID=? AND NAME=? [?=1, ?=2]
         val parametersDeleteQuery = arrayOf(id.toString())
         val deleteResult = writeDB.delete(
-            "BOOK",
-            "id=?",
+            "Auto",
+            "numeroIdentificador=?",
             parametersDeleteQuery
         )
         writeDB.close()

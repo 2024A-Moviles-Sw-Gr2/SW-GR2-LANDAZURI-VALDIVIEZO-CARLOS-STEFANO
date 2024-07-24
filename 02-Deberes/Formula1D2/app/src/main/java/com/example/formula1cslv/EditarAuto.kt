@@ -1,8 +1,11 @@
 package com.example.formula1cslv
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.EditText
 import android.widget.NumberPicker
 import androidx.appcompat.app.AlertDialog
@@ -18,6 +21,22 @@ class EditarAuto : AppCompatActivity() {
         setContentView(R.layout.activity_editar_auto)
         horaFinalizacion = findViewById(R.id.editTiempoFin)
         horaFinalizacion.setOnClickListener { openTimePicker() }
+        val idAuto = intent.getIntExtra("idAuto",-1)
+        val puntos = findViewById<EditText>(R.id.editPuntosAuto)
+        val btnActualizar = findViewById<Button>(R.id.btnActualizarAuto)
+        btnActualizar.setOnClickListener {
+            if (idAuto != -1){
+                Database.tables!!.updateCar(
+                    idAuto,
+                    horaFinalizacion.text.toString(),
+                    puntos.text.toString().toInt())
+            }else{
+                Log.e("DestinationActivity", "idGpSelecionado no fue pasado en el Intent")
+            }
+            goToActivity(GrandPrix::class.java)
+        }
+
+
     }
     private fun openTimePicker() {
         val inflater = LayoutInflater.from(this)
@@ -64,5 +83,11 @@ class EditarAuto : AppCompatActivity() {
     private fun updateTimeEditText() {
         val timeFormat = SimpleDateFormat("HH:mm:ss.SSS", Locale.US)
         horaFinalizacion.setText(timeFormat.format(calendar.time))
+    }
+    private fun goToActivity(
+        activityClass: Class<*>
+    ) {
+        val intent = Intent(this, activityClass)
+        startActivity(intent)
     }
 }

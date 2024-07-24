@@ -16,8 +16,11 @@ class Auto(private val numeroIdentificador:Int,
         this.penalizacion
         this.piloto
     }
+    fun getId():Int{
+        return numeroIdentificador
+    }
     override fun toString(): String {
-        return "${piloto} | ${escuderia} #${numeroIdentificador}"
+        return "${piloto} | ${escuderia} #${numeroIdentificador} | ${tiempoTotal}"
     }
 
 

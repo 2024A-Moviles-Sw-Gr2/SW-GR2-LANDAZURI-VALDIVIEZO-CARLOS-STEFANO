@@ -6,14 +6,20 @@ class Carrera(
     private val fechaGP: String,
     private val longitudCarrera: Double,
 ) {
-    private lateinit var autos: Array<Auto>
     init {
         this.identificadorGP
-        this.autos
         this.nombreCircuito
         this.fechaGP
         this.longitudCarrera
     }
+    fun getNombreCircuito():String{
+        return nombreCircuito
+    }
+    fun getId():Int{
+        return identificadorGP
+    }
+
+
 
     override fun toString(): String {
         return "${nombreCircuito} | Fecha:${fechaGP}"

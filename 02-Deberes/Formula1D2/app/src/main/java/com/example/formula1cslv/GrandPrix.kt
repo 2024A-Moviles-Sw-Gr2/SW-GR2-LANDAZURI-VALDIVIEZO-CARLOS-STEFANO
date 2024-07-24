@@ -11,37 +11,47 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.formula1cslv.entidades.Auto
 
 class GrandPrix : AppCompatActivity() {
-    val arreglo = arrayListOf<Auto>()
+    private var autos:ArrayList<Auto> = arrayListOf();
+    private var adaptador:ArrayAdapter<Auto>? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Intent
+        val idGpSelecionado = intent.getIntExtra("idGpSelecionado",-1)
         setContentView(R.layout.activity_grand_prix)
         //Titulo
         val textView = findViewById<TextView>(R.id.txtVNombreGP)
         textView.setText(MainActivity.tituloItem)
-        //Arreglo provicional
-        arreglo.add(Auto(1,"RedBull", "1:59:3.247",25,1.5,"Max Verstappen"))
-        arreglo.add(Auto(3,"Ferrari", "1:59:2.247",18,0.0,"Carlos Sainz"))
+        //Db
+        Database.tables = SqliteHelper(this)
+        autos = Database.tables!!.getCarsByGrandPrix(idGpSelecionado)
 
-        //logica lista
         //Logica lista
         val listView = findViewById<ListView>(R.id.lst_autos)
-        val adaptador = ArrayAdapter(
+        adaptador = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
-            arreglo
+            autos
         )
         listView.adapter = adaptador
-        adaptador.notifyDataSetChanged()// Para que se pueda actualizar
+        adaptador!!.notifyDataSetChanged()// Para que se pueda actualizar
 
         registerForContextMenu(listView)
         //Button crear
         val crearAuto = findViewById<Button>(R.id.btn_crear_auto)
-        crearAuto.setOnClickListener { irActividad(CrearAuto::class.java) }
+        crearAuto.setOnClickListener { irActividad(
+            CrearAuto::class.java,
+            idGpSelecionado
+        )
+            actualizarLista(idGpSelecionado)
+        }
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cl_grandPrix)) {
@@ -50,6 +60,13 @@ class GrandPrix : AppCompatActivity() {
             v.setPadding(systemBars.left,systemBars.top,systemBars.right,systemBars.bottom)
             insets
         }
+
+    }
+
+    private fun actualizarLista(idGpSelecionado: Int) {
+        autos.clear()
+        autos.addAll(Database.tables!!.getCarsByGrandPrix(idGpSelecionado))
+        adaptador!!.notifyDataSetChanged()
     }
 
     fun irActividad(
@@ -77,13 +94,52 @@ class GrandPrix : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.mi_editar ->{
-                irActividad(EditarAuto::class.java)
+                irActividad(EditarAuto::class.java,autos[posicionItemSeleccionado])
                 return true
             }
             R.id.mi_eliminar ->{
+                openDialog(autos[posicionItemSeleccionado].getId())
                 return true
             }
             else-> super.onContextItemSelected(item)
         }
+    }
+
+    private fun irActividad(clase: Class<EditarAuto>, autoSeleccionado: Auto) {
+        val intentEditar = Intent(this,clase)
+        if (autoSeleccionado!=null){
+            intentEditar.apply {
+                putExtra("idAuto",autoSeleccionado.getId())
+                putExtra("idGpParticipa",intent.getIntExtra("idGpSelecionado",-1))
+            }
+        }
+        startActivity(intentEditar)
+
+    }
+
+    private fun openDialog(index: Int) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("¿Desea eliminar el Participante?")
+        builder.setPositiveButton(
+            "Eliminar"
+        ){_,_ ->
+            Database.tables!!.deleteCar(index)
+            autos.clear()
+            autos.addAll(Database.tables!!.getCarsByGrandPrix(1))
+            adaptador!!.notifyDataSetChanged()
+        }
+        builder.setNegativeButton("Cancelar",null)
+        builder.create().show()
+    }
+
+    private fun irActividad(clase:Class<*>, idGp: Int) {
+        val intent = Intent(this,clase)
+        if (idGp!=null){
+            intent.apply {
+                putExtra("idGpParticipa",idGp)
+            }
+        }
+        startActivity(intent)
+
     }
 }
