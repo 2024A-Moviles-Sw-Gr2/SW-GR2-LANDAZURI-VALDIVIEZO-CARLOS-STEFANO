@@ -8,8 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
-import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         //Logica lista
         val listView = findViewById<ListView>(R.id.lst_gp)
+
         val adaptador = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
@@ -35,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         )
         listView.adapter = adaptador
         adaptador.notifyDataSetChanged()// Para que se pueda actualizar
+
+        //Boton crear
+
+        val btnCrearCarrera = findViewById<Button>(R.id.btn_crearGP)
+        btnCrearCarrera.setOnClickListener { irActividad(CrearGrandPrix::class.java) }
 
         registerForContextMenu(listView)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cl_main)) {
@@ -69,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             R.id.mi_eliminar ->{
                 return true
             }
-            R.id.mi_verGP ->{
+            R.id.mi_ver_gp ->{
                 irActividad(GrandPrix::class.java)
                 return true
             }

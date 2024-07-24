@@ -1,5 +1,6 @@
 package com.example.formula1cslv
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextMenu
@@ -7,13 +8,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.formula1cslv.entidades.Auto
-import com.example.formula1cslv.entidades.Tiempo
-import java.io.CharArrayReader
 
 class GrandPrix : AppCompatActivity() {
     val arreglo = arrayListOf<Auto>()
@@ -24,8 +24,8 @@ class GrandPrix : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.txtVNombreGP)
         textView.setText(MainActivity.tituloItem)
         //Arreglo provicional
-        arreglo.add(Auto(1,"RedBull",true, Tiempo(1,2,3.15),25,1.5,"Max Verstappen"))
-        arreglo.add(Auto(3,"Ferrari",true, Tiempo(1,2,3.90),18,0.0,"Carlos Sainz"))
+        arreglo.add(Auto(1,"RedBull", "1:59:3.247",25,1.5,"Max Verstappen"))
+        arreglo.add(Auto(3,"Ferrari", "1:59:2.247",18,0.0,"Carlos Sainz"))
 
         //logica lista
         //Logica lista
@@ -39,6 +39,11 @@ class GrandPrix : AppCompatActivity() {
         adaptador.notifyDataSetChanged()// Para que se pueda actualizar
 
         registerForContextMenu(listView)
+        //Button crear
+        val crearAuto = findViewById<Button>(R.id.btn_crear_auto)
+        crearAuto.setOnClickListener { irActividad(CrearAuto::class.java) }
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cl_grandPrix)) {
                 v, insets->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -46,6 +51,14 @@ class GrandPrix : AppCompatActivity() {
             insets
         }
     }
+
+    fun irActividad(
+        clase:Class<*>
+    ){
+        val intent = Intent(this,clase)
+        startActivity(intent)
+    }
+
     var posicionItemSeleccionado = -1
     override fun onCreateContextMenu(
         menu: ContextMenu?,
@@ -64,6 +77,7 @@ class GrandPrix : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.mi_editar ->{
+                irActividad(EditarAuto::class.java)
                 return true
             }
             R.id.mi_eliminar ->{

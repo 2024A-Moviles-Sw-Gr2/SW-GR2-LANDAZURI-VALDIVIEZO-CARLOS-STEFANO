@@ -9,6 +9,6 @@
         android:id="@+id/mi_eliminar"
         android:title="Eliminar" />
     <item
-        android:id="@+id/mi_verGP"
+        android:id="@+id/mi_ver_gp"
         android:title="Ver Grand Prix" />
 </menu>

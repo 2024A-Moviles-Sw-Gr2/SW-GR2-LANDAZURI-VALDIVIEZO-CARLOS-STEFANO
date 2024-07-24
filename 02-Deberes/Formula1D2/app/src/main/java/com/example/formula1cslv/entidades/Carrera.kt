@@ -2,11 +2,11 @@ package com.example.formula1cslv.entidades
 
 class Carrera(
     private val identificadorGP: Int,
-    private var autos: Array<Auto>?,
     private val nombreCircuito: String,
-    private val fechaGP: Fecha,
+    private val fechaGP: String,
     private val longitudCarrera: Double,
 ) {
+    private lateinit var autos: Array<Auto>
     init {
         this.identificadorGP
         this.autos
