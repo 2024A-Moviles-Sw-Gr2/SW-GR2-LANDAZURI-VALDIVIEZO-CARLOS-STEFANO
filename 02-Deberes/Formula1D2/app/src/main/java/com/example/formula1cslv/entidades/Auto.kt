@@ -20,7 +20,7 @@ class Auto(private val numeroIdentificador:Int,
         return numeroIdentificador
     }
     override fun toString(): String {
-        return "${piloto} | ${escuderia} #${numeroIdentificador} | ${tiempoTotal}"
+        return "${piloto} | ${escuderia} #${numeroIdentificador} | ${tiempoTotal} | ${penalizacion}M"
     }
 
 

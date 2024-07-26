@@ -53,6 +53,9 @@ class GrandPrix : AppCompatActivity() {
             actualizarLista(idGpSelecionado)
         }
 
+        textView.setOnClickListener {
+            irActividad(MainActivity::class.java)
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cl_grandPrix)) {
                 v, insets->
