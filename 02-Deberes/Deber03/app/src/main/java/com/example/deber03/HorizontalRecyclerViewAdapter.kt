@@ -15,6 +15,7 @@ class HorizontalRecyclerViewAdapter(private val imageList: List<Int>) : Recycler
         val productPrice: TextView = view.findViewById(R.id.txtPrecioReducido)
         val productRealPrice: TextView = view.findViewById(R.id.txtPrecioReal)
         val estrellas:TextView = view.findViewById(R.id.estrellas)
+        val starImg:ImageView = view.findViewById(R.id.estrellasimg)
 
     }
 
@@ -31,6 +32,7 @@ class HorizontalRecyclerViewAdapter(private val imageList: List<Int>) : Recycler
         holder.productRealPrice.text = String.format("$ %.1f",(precio*2))
         holder.productRealPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         holder.estrellas.text = String.format("%.1f",Random.nextDouble(0.0,5.0))
+        holder.starImg.setImageResource(R.drawable.star)
     }
 
     override fun getItemCount(): Int = imageList.size

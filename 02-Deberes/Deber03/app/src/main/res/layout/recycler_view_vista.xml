@@ -17,6 +17,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/estrellasimg"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/star"
+            tools:visibility="visible" />
+
+        <ImageView
             android:id="@+id/iv_product"
             android:layout_width="match_parent"
             android:layout_height="149dp"
@@ -68,18 +83,7 @@
             tools:layout_editor_absoluteX="212dp"
             tools:layout_editor_absoluteY="266dp" />
 
-        <ImageView
-            android:id="@+id/estrellasimg"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="30dp"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/star" />
+
 
     </FrameLayout>
 
