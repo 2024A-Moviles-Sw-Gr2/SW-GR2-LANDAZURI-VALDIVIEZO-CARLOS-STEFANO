@@ -1,4 +1,11 @@
 package com.example.deber03.model
 
-class Producto {
+import androidx.annotation.DrawableRes
+
+class Producto(
+    val precioDescuento: Double,
+    val precio: Double,
+    @DrawableRes val imageRes: Int
+) {
+
 }

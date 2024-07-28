@@ -1,4 +1,8 @@
 package com.example.deber03.model
 
-class CatalogoProducto {
+data class CatalogoProducto(
+    val catalogo: String,
+    val productos: List<Producto>
+) {
+
 }
