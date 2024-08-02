@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-  
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mi_home"
+        android:title=""
+        android:icon="@drawable/icons_home"
+        />
+    <item
+        android:id="@+id/mi_search"
+        android:title=""
+        android:icon="@drawable/icons_search_in_list"/>
+    <item
+        android:id="@+id/mi_us_shipping"
+        android:title="" />
+    <item
+        android:id="@+id/mi_carrito"
+        android:title=""
+        android:icon="@drawable/icons_cart"/>
+    <item
+        android:id="@+id/mi_user"
+        android:title=""
+        android:icon="@drawable/icons_user"/>
 </menu>
