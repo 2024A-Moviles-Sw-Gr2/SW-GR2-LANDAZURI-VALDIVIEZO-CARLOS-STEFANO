@@ -158,7 +158,7 @@
             android:id="@+id/ib_opciones_publicacion_foro"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:translationX="370dp"
+            android:translationX="350dp"
             android:src="@drawable/dots_horizontal"
             android:background="@android:color/transparent"
             android:translationY="10dp"
