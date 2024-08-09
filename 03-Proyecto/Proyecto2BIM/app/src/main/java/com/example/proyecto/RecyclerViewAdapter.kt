@@ -1,6 +1,7 @@
 package com.example.proyecto
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -23,15 +24,22 @@ class RecyclerViewAdapter(private val context: Context, private val listaPublica
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SectionViewHolder {
-        TODO("Not yet implemented")
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.foros,parent,false)
+        return SectionViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return listaPublicaciones.size
     }
 
     override fun onBindViewHolder(holder: SectionViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val publicacion = listaPublicaciones[position]
+        holder.nombreForo.text = publicacion.id_foro.toString()
+        holder.fechaPublicacionForo.text = publicacion.fecha.toString()
+        holder.contenidoPublicacionForo.text = publicacion.contenido.toString()
+        holder.nombrePublicacionForo.text = publicacion.titulo
+
     }
 
 
