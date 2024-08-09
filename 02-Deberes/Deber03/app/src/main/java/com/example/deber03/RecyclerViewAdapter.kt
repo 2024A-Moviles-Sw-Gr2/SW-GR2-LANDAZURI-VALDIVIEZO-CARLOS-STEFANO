@@ -18,6 +18,7 @@ class RecyclerViewAdapter(private val context: Context,private val listaSeccionP
         val description:TextView = view.findViewById(R.id.descripcion)
         val recyclerView:RecyclerView = view.findViewById(R.id.rv_product_catalog)
         val layoutHorizontal:ConstraintLayout = view.findViewById(R.id.rv_product_sections)
+       
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SectionViewHolder {
         val itemView = LayoutInflater.from(parent.context)
