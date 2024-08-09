@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="letras">#FFFFFFFF</color>
+    <color name="botones">#F4B7C9</color>
+    <color name="fondoForos">#B2B34866</color>  <!-- 70% opaco, 30% transparente -->
+    <color name="fondoMenu">#5C2441</color>
+    <color name="fondoGenral">#313D4D</color>
+    <color name="hintColor">#80FFFFFF</color>  <!-- Blanco con 50% de transparencia -->
+
 </resources>

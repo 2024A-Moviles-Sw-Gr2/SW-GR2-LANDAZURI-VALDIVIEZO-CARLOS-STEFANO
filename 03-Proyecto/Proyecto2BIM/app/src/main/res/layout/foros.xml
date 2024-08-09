@@ -4,94 +4,115 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="10dp">
+    android:paddingVertical="10dp"
+    android:background="@color/fondoGenral"
+    >
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="155dp"
+        android:background="@drawable/border_frame"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/iv_foro"
             android:layout_width="43dp"
             android:layout_height="47dp"
+            android:translationX="20dp"
+            android:translationY="10dp"
+
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp"
-            tools:srcCompat="@tools:sample/avatars"
-            android:translationX="20dp"
-            android:translationY="10dp"/>
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_nombre_foro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/letras"
             android:text="TextView"
-            tools:layout_editor_absoluteX="109dp"
-            tools:layout_editor_absoluteY="20dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
             android:translationX="70dp"
-            android:translationY="10dp"/>
+            android:translationY="10dp"
+            tools:layout_editor_absoluteX="109dp"
+            tools:layout_editor_absoluteY="20dp" />
+
         <TextView
             android:id="@+id/tv_fecha_publicacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            tools:layout_editor_absoluteX="109dp"
-            tools:layout_editor_absoluteY="44dp"
+            android:textColor="@color/letras"
+            android:textSize="12dp"
             android:translationX="70dp"
-            android:translationY="35dp"/>
+            android:translationY="35dp"
+            tools:layout_editor_absoluteX="109dp"
+            tools:layout_editor_absoluteY="44dp" />
 
         <TextView
             android:id="@+id/tv_titulo_publicacion_foro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/letras"
             android:text="TextView"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="71dp"
+            android:textSize="17dp"
+            android:textStyle="bold"
             android:translationX="20dp"
-            android:translationY="60dp"/>
+            android:translationY="60dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="71dp" />
 
         <TextView
             android:id="@+id/tv_contenido_publicacion_foro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/letras"
             android:text="TextView"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="98dp"
+            android:textSize="12dp"
             android:translationX="20dp"
-            android:translationY="85dp"/>
+            android:translationY="85dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="98dp" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
             android:layout_width="130dp"
             android:layout_height="30dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="138dp"
             android:translationX="20dp"
-            android:translationY="110dp">
+            android:translationY="110dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="138dp">
 
             <ImageButton
                 android:id="@+id/ib_like_up"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/like"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.089"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:layout_constraintVertical_bias="0.089" />
 
             <ImageButton
                 android:id="@+id/ib_like_down"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/dislike"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.142"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:layout_constraintVertical_bias="0.142" />
 
             <TextView
                 android:id="@+id/tv_num_likes"
@@ -100,28 +121,32 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="21dp"
                 android:text="TextView"
+                android:textColor="@color/letras"
+                android:textSize="12dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ib_like_down"
-                app:layout_constraintHorizontal_bias="0.375"
+                app:layout_constraintHorizontal_bias="0.125"
                 app:layout_constraintStart_toEndOf="@+id/ib_like_up"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.555" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="80dp"
             android:layout_height="30dp"
-            tools:layout_editor_absoluteX="257dp"
-            tools:layout_editor_absoluteY="138dp"
             android:translationX="180dp"
-            android:translationY="110dp">
+            android:translationY="110dp"
+            tools:layout_editor_absoluteX="257dp"
+            tools:layout_editor_absoluteY="138dp">
 
             <TextView
                 android:id="@+id/tv_num_comentarios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                android:textSize="12dp"
+                android:textColor="@color/letras"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -133,11 +158,12 @@
             android:id="@+id/ib_opciones_publicacion_foro"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            tools:layout_editor_absoluteX="367dp"
-            tools:layout_editor_absoluteY="12dp"
-            tools:srcCompat="@tools:sample/avatars"
             android:translationX="370dp"
-            android:translationY="10dp"/>
+            android:src="@drawable/dots_horizontal"
+            android:background="@android:color/transparent"
+            android:translationY="10dp"
+            tools:layout_editor_absoluteX="367dp"
+            tools:layout_editor_absoluteY="12dp"/>
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
