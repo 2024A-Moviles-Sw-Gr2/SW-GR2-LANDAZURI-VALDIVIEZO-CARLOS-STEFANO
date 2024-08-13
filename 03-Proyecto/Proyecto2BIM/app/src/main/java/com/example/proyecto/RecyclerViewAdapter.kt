@@ -4,7 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
@@ -40,7 +42,39 @@ class RecyclerViewAdapter(private val context: Context, private val listaPublica
         holder.contenidoPublicacionForo.text = publicacion.contenido.toString()
         holder.nombrePublicacionForo.text = publicacion.titulo
 
+        holder.itemView.findViewById<ImageButton>(R.id.ib_opciones_publicacion_foro).setOnClickListener { view ->
+            val popupMenu = PopupMenu(context, view)
+            val menuInflater = popupMenu.menuInflater
+            menuInflater.inflate(R.menu.menu_popup, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.action_delete -> {
+                        // Llama a la función para eliminar el foro
+                        //Esto esta bien con BD
+                        val dbHelper = SQLiteHelper(context)
+                        val result = dbHelper.deleteForo(publicacion.id_foro)
+                        if (result > 0) {
+                            // Elimina la publicación de la lista y notifica el cambio
+                            listaPublicaciones.removeAt(position)
+                            notifyItemRemoved(position)
+                        }
+                        //TODO: la eliminacion de la lista de publicaciones que sea por ID FORO. Y se necesita la posicion actual.
+                        listaPublicaciones.removeAt(position)
+                        notifyItemRemoved(position)
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            popupMenu.show()
+        }
     }
+
+
+
+
 
 
 }

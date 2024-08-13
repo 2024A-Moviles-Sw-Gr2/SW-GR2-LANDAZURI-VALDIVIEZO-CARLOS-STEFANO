@@ -1,5 +1,6 @@
 package com.example.proyecto
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto.modelo.Publicacion
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +22,36 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         Database.tables = SQLiteHelper(this)
+        val bottonNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+
+        bottonNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.home -> {
+                    // Código para mostrar la vista de inicio
+                     true
+                }
+                R.id.community -> {
+                    // Código para mostrar la vista de foros
+                     true
+                }
+                R.id.add -> {
+                    val intent = Intent(this, CrearPublicacion::class.java)
+                    startActivity(intent)
+                     true
+                }
+                R.id.bell -> {
+                    // Código para mostrar la vista de perfil
+                     true
+                }
+                else -> false
+            }
+        }
         inicializarVista()
     }
+
+
+
+
 
     private fun inicializarVista() {
 

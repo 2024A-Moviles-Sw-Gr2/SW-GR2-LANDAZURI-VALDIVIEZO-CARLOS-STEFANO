@@ -13,8 +13,9 @@
         android:icon="@drawable/add_circle"
     android:title="" />
     <item
-        android:id="@+id/bell"
-        android:icon="@drawable/bell"
-    android:title="" />
+            android:id="@+id/bell"
+            android:icon="@drawable/bell"
+            android:title=""
+            android:visible="false" />
 
 </menu>

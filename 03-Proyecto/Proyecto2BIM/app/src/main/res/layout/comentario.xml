@@ -1,6 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools">
 
+    <FrameLayout
+            android:layout_width="411dp"
+            android:layout_height="70dp"
+            android:background="@drawable/border_frame"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+                android:id="@+id/tv_nombre_autor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/letras"
+                android:text="TextView"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:translationX="20dp"
+                android:translationY="10dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="20dp" />
+
+        <TextView
+                android:id="@+id/tv_fecha_comentario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/letras"
+                android:textSize="12dp"
+                android:translationX="100dp"
+                android:translationY="16dp"
+                tools:layout_editor_absoluteX="109dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+        <TextView
+                android:id="@+id/tv_contenido_comentario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/letras"
+                android:text="TextView"
+                android:textSize="12dp"
+                android:translationX="20dp"
+                android:translationY="40dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="98dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:translationX="180dp"
+                android:translationY="10dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="138dp"
+                android:background="@drawable/border_frame_rosa">
+
+            <ImageButton
+                    android:id="@+id/ib_responder"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/reply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.533"
+                    android:layout_marginStart="4dp" />
+
+            <TextView
+                    android:id="@+id/tv_responder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Responder"
+                    android:textColor="@color/letras"
+                    android:textSize="8dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="24dp"
+                    app:layout_constraintVertical_bias="0.526" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:translationX="270dp"
+                android:translationY="10dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="138dp"
+                android:background="@drawable/border_frame_rosa">
+
+            <ImageButton
+                    android:id="@+id/ib_like_up"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/like"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.533"
+                    android:layout_marginStart="4dp" />
+
+            <ImageButton
+                    android:id="@+id/ib_like_down"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/dislike"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.533"
+                    android:layout_marginEnd="4dp" />
+
+            <TextView
+                    android:id="@+id/tv_num_likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="21dp"
+                    android:text="TextView"
+                    android:textColor="@color/letras"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ib_like_down"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/ib_like_up"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
