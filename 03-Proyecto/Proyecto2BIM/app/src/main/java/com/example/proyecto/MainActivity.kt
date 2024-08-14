@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.community -> {
                     // Código para mostrar la vista de foros
+                    val intent  = Intent(this,ListaForos::class.java)
+                    startActivity(intent)
                      true
                 }
                 R.id.add -> {

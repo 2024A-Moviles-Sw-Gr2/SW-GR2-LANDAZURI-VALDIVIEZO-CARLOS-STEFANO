@@ -19,7 +19,7 @@ class CrearPublicacion : AppCompatActivity() {
             insets
 
         }
-        val backButton: ImageButton = findViewById(R.id.imageButton)
+        val backButton: ImageButton = findViewById(R.id.ib_regresar_lista_publicaciones)
                 backButton.setOnClickListener {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
