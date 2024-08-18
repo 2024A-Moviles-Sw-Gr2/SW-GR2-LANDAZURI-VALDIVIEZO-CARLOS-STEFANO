@@ -35,6 +35,7 @@ class RecyclerViewAdapter(private val context: Context, private val listaPublica
         return listaPublicaciones.size
     }
 
+
     override fun onBindViewHolder(holder: SectionViewHolder, position: Int) {
         val publicacion = listaPublicaciones[position]
         holder.nombreForo.text = publicacion.id_foro.toString()
