@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/letras"
-            android:text="TextView"
+            android:text="Foro"
             android:textSize="16dp"
             android:textStyle="bold"
             android:translationX="70dp"
@@ -46,41 +46,42 @@
             tools:layout_editor_absoluteY="20dp" />
 
         <TextView
-            android:id="@+id/tv_fecha_publicacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@color/letras"
-            android:textSize="12dp"
-            android:translationX="70dp"
-            android:translationY="35dp"
-            tools:layout_editor_absoluteX="109dp"
-            tools:layout_editor_absoluteY="44dp" />
+                android:id="@+id/tv_fecha_publicacion"
+                android:layout_width="263dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/letras"
+                android:textSize="12dp"
+                android:translationX="70dp"
+                android:translationY="35dp"
+                tools:layout_editor_absoluteX="109dp"
+                tools:layout_editor_absoluteY="44dp" />
 
         <TextView
-            android:id="@+id/tv_titulo_publicacion_foro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/letras"
-            android:text="TextView"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            android:translationX="20dp"
-            android:translationY="60dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="71dp" />
+                android:id="@+id/tv_titulo_publicacion_foro"
+                android:layout_width="318dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/letras"
+                android:text="TextView"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:translationX="20dp"
+                android:translationY="60dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="71dp" />
 
         <TextView
-            android:id="@+id/tv_contenido_publicacion_foro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/letras"
-            android:text="TextView"
-            android:textSize="12dp"
-            android:translationX="20dp"
-            android:translationY="85dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="98dp" />
+                android:id="@+id/tv_contenido_publicacion_foro"
+                android:layout_width="318dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/letras"
+                android:text="TextView"
+                android:textSize="12dp"
+                android:maxHeight="20dp"
+                android:translationX="20dp"
+                android:translationY="85dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="98dp" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

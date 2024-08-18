@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.ContentValues
+import android.content.Intent
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 
 
 class CrearForo : AppCompatActivity() {
@@ -31,6 +33,12 @@ class CrearForo : AppCompatActivity() {
         btnAgregarForo.setOnClickListener {
             agregarForo()
         }
+        val btnregresar = findViewById<ImageButton>(R.id.ib_regresar_main)
+        btnregresar.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun agregarForo() {

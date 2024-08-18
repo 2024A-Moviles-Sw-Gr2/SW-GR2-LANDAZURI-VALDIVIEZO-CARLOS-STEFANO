@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-                android:id="@+id/ib_regresar_lista_publicaciones"
+                android:id="@+id/ib_regresar_main"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@android:color/transparent"
@@ -78,6 +78,7 @@
             android:ems="10"
             android:id="@+id/et_cf_descripcion"
             android:textColorHint="@color/hintColor"
+            android:textColor="@color/letras"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="4dp"

@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.EditText
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -21,14 +20,21 @@ class CrearGrandPrix : AppCompatActivity() {
         fechaGp = findViewById<EditText>(R.id.eTFechaGP)
         fechaGp.setOnClickListener{openDatePicker()}
         val circuito = findViewById<EditText>(R.id.eTextCircuito)
-        val longitud = findViewById<EditText>(R.id.eTextLongitud)
+        val longitudCarrera = findViewById<EditText>(R.id.eTextLongitud)
+
+
 
         val btnCrearGrandPrix = findViewById<Button>(R.id.btnAgregarGrandPrix)
         btnCrearGrandPrix.setOnClickListener {
+            val coordendas = findViewById<EditText>(R.id.et_latitud_longitud).text.toString().split(",")
+            val latitud = coordendas[0]
+            val longitud = coordendas[1]
             Database.tables!!.createGrandPrix(
                 circuito.text.toString(),
                 fechaGp.text.toString(),
-                longitud.text.toString().toDouble(),
+                longitudCarrera.text.toString().toDouble(),
+                latitud.toDouble(),
+                longitud.toDouble()
             )
             goToActivity(MainActivity::class.java)
         }

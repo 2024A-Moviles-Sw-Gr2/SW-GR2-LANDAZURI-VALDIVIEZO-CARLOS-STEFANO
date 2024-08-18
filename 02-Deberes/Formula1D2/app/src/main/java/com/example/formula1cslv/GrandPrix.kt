@@ -15,17 +15,30 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.formula1cslv.entidades.Auto
+import com.example.formula1cslv.entidades.Carrera
+import com.google.android.gms.maps.model.LatLng
 
 class GrandPrix : AppCompatActivity() {
     private var autos:ArrayList<Auto> = arrayListOf();
     private var adaptador:ArrayAdapter<Auto>? = null
+    private var idGpSelecionado:Int = 0
+    private var latitud:Double = 0.0
+    private var longitud:Double = 0.0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Intent
-        val idGpSelecionado = intent.getIntExtra("idGpSelecionado",-1)
+
         setContentView(R.layout.activity_grand_prix)
+        val carrera = intent.getSerializableExtra("carreraSeleccionada") as? Carrera
+        carrera.let {
+            if (carrera != null) {
+                idGpSelecionado = carrera.getId()
+                latitud = carrera.getLatitud()
+                longitud = carrera.getLongitud()
+            }
+        }
         //Titulo
         val textView = findViewById<TextView>(R.id.txtVNombreGP)
         textView.setText(MainActivity.tituloItem)
@@ -57,6 +70,11 @@ class GrandPrix : AppCompatActivity() {
             irActividad(MainActivity::class.java)
         }
 
+        val btnLocalizar = findViewById<Button>(R.id.btn_localizar)
+        btnLocalizar.setOnClickListener {
+            irActividad(GGoogleMapsActivity::class.java,latitud,longitud)
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cl_grandPrix)) {
                 v, insets->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -76,6 +94,20 @@ class GrandPrix : AppCompatActivity() {
         clase:Class<*>
     ){
         val intent = Intent(this,clase)
+        startActivity(intent)
+    }
+    fun irActividad(
+        clase:Class<*>,
+        latitud:Double,
+        longitud: Double
+    ){
+        val intent = Intent(this,clase)
+        if (latitud!=null && longitud!=null){
+            intent.apply {
+                putExtra("latitud",latitud)
+                putExtra("longitud",longitud)
+            }
+        }
         startActivity(intent)
     }
 

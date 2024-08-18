@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.mi_ver_gp ->{
-                irActividad(GrandPrix::class.java,GrandPrixs[posicionItemSeleccionado].getId())
+                irActividad(GrandPrix::class.java,GrandPrixs[posicionItemSeleccionado])
                 return true
             }
             else-> super.onContextItemSelected(item)
@@ -99,6 +99,17 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
+    private fun irActividad(clase:Class<*>, carrera: Carrera) {
+        val intent = Intent(this,clase)
+        if (carrera!=null){
+            intent.apply {
+                putExtra("carreraSeleccionada",carrera)
+            }
+        }
+        startActivity(intent)
+    }
+
 
     private fun openDialog(index: Int) {
         val builder = AlertDialog.Builder(this)

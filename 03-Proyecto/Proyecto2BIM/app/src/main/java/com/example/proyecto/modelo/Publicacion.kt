@@ -8,5 +8,7 @@ class Publicacion(
     val fecha: String,
     val likes: Int = 0
 ) {
-
+    override fun toString(): String {
+        return "Publicacion(id_publicacion=$id_publicacion, titulo='$titulo')"
+    }
 }

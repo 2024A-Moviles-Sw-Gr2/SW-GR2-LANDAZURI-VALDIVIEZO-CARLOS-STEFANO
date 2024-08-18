@@ -1,4 +1,7 @@
 package com.example.proyecto.interfaces
 
-class InterfaceClickListener {
+open class InterfaceOnClick {
+    interface ItemClickListener {
+        fun onItemClick(position:Int)
+        }
 }

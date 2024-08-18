@@ -11,53 +11,57 @@ class SqliteHelper(
 ) : SQLiteOpenHelper(context, "AndroidApp", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createAutoTable = """
-            CREATE TABLE GrandPrix(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                nombreCircuito TEXT NOT NULL,
-                fecha DATE,
-                longitudCarrera DECIMAL(10,2)
-            );
-        """.trimIndent()
-
         val createGrandPrixTable = """
-            CREATE TABLE Auto(
-                numeroIdentificador INTEGER PRIMARY KEY AUTOINCREMENT,
-                escuderia TEXT,
-                tiempoTotal TEXT,
-                puntosObtenidos INTEGER,
-                penalizacion DECIMAL(10,2),
-                piloto TEXT,
-                identificadorGP INTEGER,
-                FOREIGN KEY (identificadorGP) REFERENCES GrandPrix(identificadorGP) ON DELETE CASCADE
-            );
-        """.trimIndent()
+        CREATE TABLE GrandPrix(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombreCircuito TEXT NOT NULL,
+            fecha DATE,
+            longitudCarrera DECIMAL(10,2),
+            latitud DECIMAL(10,6),  -- Añadir este campo
+            longitud DECIMAL(10,6)  -- Añadir este campo
+        );
+    """.trimIndent()
 
-        db?.execSQL(createAutoTable)
+        val createAutoTable = """
+        CREATE TABLE Auto(
+            numeroIdentificador INTEGER PRIMARY KEY AUTOINCREMENT,
+            escuderia TEXT,
+            tiempoTotal TEXT,
+            puntosObtenidos INTEGER,
+            penalizacion DECIMAL(10,2),
+            piloto TEXT,
+            identificadorGP INTEGER,
+            FOREIGN KEY (identificadorGP) REFERENCES GrandPrix(identificadorGP) ON DELETE CASCADE
+        );
+    """.trimIndent()
+
         db?.execSQL(createGrandPrixTable)
+        db?.execSQL(createAutoTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
 
 
-    fun getAllGrandPrixs():ArrayList<Carrera>{
-        val lectureDB =readableDatabase
-        val queryScript ="""
-            SELECT * FROM GrandPrix
-        """.trimIndent()
+    fun getAllGrandPrixs(): ArrayList<Carrera> {
+        val lectureDB = readableDatabase
+        val queryScript = """
+        SELECT * FROM GrandPrix
+    """.trimIndent()
         val queryResult = lectureDB.rawQuery(
             queryScript,
             emptyArray()
         )
         val response = arrayListOf<Carrera>()
-        if (queryResult.moveToFirst()){
+        if (queryResult.moveToFirst()) {
             do {
                 response.add(
                     Carrera(
                         queryResult.getInt(0),
                         queryResult.getString(1),
                         queryResult.getString(2),
-                        queryResult.getDouble(3)
+                        queryResult.getDouble(3),
+                        queryResult.getDouble(4), // Leer latitud
+                        queryResult.getDouble(5)  // Leer longitud
                     )
                 )
             } while (queryResult.moveToNext())
@@ -96,24 +100,30 @@ class SqliteHelper(
         return response
     }
 
-   fun createGrandPrix(nombreCircuito:String,
-                       fecha:String,
-                       longitudCarrera:Double):Boolean{
-       val writeDB = writableDatabase
-       val valuesToStore = ContentValues()
-       valuesToStore.put("nombreCircuito", nombreCircuito)
-       valuesToStore.put("fecha", fecha)
-       valuesToStore.put("longitudCarrera", longitudCarrera)
+    fun createGrandPrix(
+        nombreCircuito: String,
+        fecha: String,
+        longitudCarrera: Double,
+        latitud: Double,      // Añadir este parámetro
+        longitud: Double      // Añadir este parámetro
+    ): Boolean {
+        val writeDB = writableDatabase
+        val valuesToStore = ContentValues()
+        valuesToStore.put("nombreCircuito", nombreCircuito)
+        valuesToStore.put("fecha", fecha)
+        valuesToStore.put("longitudCarrera", longitudCarrera)
+        valuesToStore.put("latitud", latitud)        // Añadir este valor
+        valuesToStore.put("longitud", longitud)      // Añadir este valor
 
-       val storeResult = writeDB.insert(
-           "GrandPrix",
-           null,
-           valuesToStore
-       )
-       writeDB.close()
+        val storeResult = writeDB.insert(
+            "GrandPrix",
+            null,
+            valuesToStore
+        )
+        writeDB.close()
 
-       return storeResult.toInt() !=-1
-   }
+        return storeResult.toInt() != -1
+    }
     fun createCar(
         escuderia:String,
         tiempoTotal:String,

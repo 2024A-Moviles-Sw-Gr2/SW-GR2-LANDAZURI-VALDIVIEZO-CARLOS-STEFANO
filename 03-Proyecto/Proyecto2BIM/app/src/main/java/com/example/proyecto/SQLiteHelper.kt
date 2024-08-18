@@ -254,8 +254,101 @@ class SQLiteHelper(context: Context?) : SQLiteOpenHelper(context, "AndroidApp", 
         db.close()
         return result
     }
+    fun findIdPublicacionByName(nombre: String):Int? {
+        val db = readableDatabase
+        val queryScript = """
+            SELECT id_publicacion FROM Publicacion
+            WHERE titulo = ?
+        """.trimIndent()
 
+        val queryResult = db.rawQuery(queryScript, arrayOf(nombre))
+        var idPublicacion: Int? = null
+        if(queryResult.moveToFirst()){
+            idPublicacion = queryResult.getInt(0)
+        }
+        queryResult.close()
+        db.close()
+        return idPublicacion
+    }
 
+    fun findPublicacionById(idPublicacion: Int): Publicacion? {
+        val db = readableDatabase
+        val queryScript = """
+        SELECT * FROM Publicacion
+        WHERE id_publicacion = ?
+    """.trimIndent()
 
+        val queryResult = db.rawQuery(queryScript, arrayOf(idPublicacion.toString()))
+        var publicacion: Publicacion? = null
+
+        if (queryResult.moveToFirst()) {
+            publicacion = Publicacion(
+                queryResult.getInt(0),  // id_publicacion
+                queryResult.getInt(1),  // id_foro
+                queryResult.getString(2),  // titulo
+                queryResult.getString(3),  // contenido
+                queryResult.getString(4),  // fecha
+                queryResult.getInt(5)  // otro_campo (si hay un quinto campo, ajusta según tu tabla)
+            )
+        }
+
+        queryResult.close()
+        db.close()
+
+        return publicacion
+    }
+
+    fun getComentariosPorIdPublicacion(idPublicacion: Int): ArrayList<Comentario> {
+        val db = readableDatabase
+        val queryScript = """
+        SELECT * FROM Comentario
+        WHERE id_publicacion = ?
+    """.trimIndent()
+
+        val queryResult = db.rawQuery(queryScript, arrayOf(idPublicacion.toString()))
+        val listaComentarios = arrayListOf<Comentario>()
+
+        if (queryResult.moveToFirst()) {
+            do {
+                val comentario = Comentario(
+                    queryResult.getInt(0),   // id_comentario (suponiendo que sea el primer campo)
+                    queryResult.getInt(1),   // id_publicacion
+                    queryResult.getString(2), // contenido
+                    queryResult.getString(3), // fecha
+                    queryResult.getInt(4)    // likes
+                )
+                listaComentarios.add(comentario)
+            } while (queryResult.moveToNext())
+        }
+
+        queryResult.close()
+        db.close()
+
+        return listaComentarios
+    }
+
+    fun findForoById(idForo: Int): Foro? {
+        val db = readableDatabase
+        val queryScript = """
+        SELECT * FROM Foro
+        WHERE id_foro = ?
+    """.trimIndent()
+
+        val queryResult = db.rawQuery(queryScript, arrayOf(idForo.toString()))
+        var foro: Foro? = null
+
+        if (queryResult.moveToFirst()) {
+            foro = Foro(
+                queryResult.getInt(0),  // id_foro
+                queryResult.getString(1),  // nombre
+                queryResult.getString(2)  // descripcion
+            )
+        }
+
+        queryResult.close()
+        db.close()
+
+        return foro
+    }
 
 }

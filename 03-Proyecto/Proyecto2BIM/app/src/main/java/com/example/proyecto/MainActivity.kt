@@ -2,16 +2,21 @@ package com.example.proyecto
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.proyecto.modelo.Publicacion
+import com.example.proyecto.interfaces.InterfaceOnClick
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),InterfaceOnClick.ItemClickListener{
+
+    private lateinit var adapaterPublicaiones: PublicacionesAdapter;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         }
         Database.tables = SQLiteHelper(this)
         val bottonNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
+
+        val nombreApp = findViewById<TextView>(R.id.textView4)
+        nombreApp.setOnClickListener {
+            val intent = Intent(this,PublicacionActivity::class.java)
+            startActivity(intent)
+        }
+
 
         bottonNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
@@ -41,53 +53,29 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                      true
                 }
-                R.id.bell -> {
-                    // Código para mostrar la vista de perfil
-                     true
-                }
                 else -> false
             }
         }
         inicializarVista()
+
     }
 
-
-
-
-
+    override fun onItemClick(position: Int) {
+        val publicacionId = (adapaterPublicaiones).listaPublicaciones[position].id_publicacion
+        irActividad(com.example.proyecto.PublicacionActivity::class.java, publicacionId)
+        }
     private fun inicializarVista() {
 
-        val listaPublicaciones = arrayListOf(
-            Publicacion(
-                id_publicacion = 1,
-                id_foro = 101,
-                titulo = "Primer Post",
-                contenido = "Este es el contenido de la primera publicación.",
-                fecha = "2024-08-09",
-                likes = 10
-            ),
-            Publicacion(
-                id_publicacion = 2,
-                id_foro = 101,
-                titulo = "Segundo Post",
-                contenido = "Este es el contenido de la segunda publicación.",
-                fecha = "2024-08-10",
-                likes = 5
-            ),
-            Publicacion(
-                id_publicacion = 3,
-                id_foro = 102,
-                titulo = "Tercer Post",
-                contenido = "Este es el contenido de la tercera publicación.",
-                fecha = "2024-08-11",
-                likes = 15
-            )
-            // Agrega más publicaciones según sea necesario
-        )
-
+        val listaPublicaciones = Database.tables!!.getAllPublicaciones()
 
         val recyclerView: RecyclerView = findViewById(R.id.rv_foros)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = RecyclerViewAdapter(this,listaPublicaciones)
+        adapaterPublicaiones = PublicacionesAdapter(this,listaPublicaciones,this)
+        recyclerView.adapter = adapaterPublicaiones
     }
+    private fun irActividad(clase: Class<*>, publicacionId: Int) {
+        val intent = Intent(this, clase)
+        intent.putExtra("publicacionId", publicacionId)
+        startActivity(intent)
+        }
 }
